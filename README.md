@@ -22,8 +22,7 @@ This program is released as a portable application only.
 Linux:
 
 ```bash
-  sudo mv rgb-hex-converter ~/.local/share/bin
-  sudo mv rgb-hex-converter.desktop ~./local/share/applications
+  sudo mv rgb_hex_converter ~/.local/share/bin
 ```
     
 Windows:
