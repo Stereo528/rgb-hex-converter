@@ -13,6 +13,9 @@ impl Display for RGB {
     }
 }
 
+// TODO: Allow for environtment variables to be set for the RGB values or hex value
+// rgb_hex_converter -r 255 -g 255 -b 255 or rgb_hex_converter -h #FFFFFF
+
 fn main() {
     let mut hex_or_rgb = String::new();
     let mut rgb = String::new();
@@ -45,13 +48,22 @@ fn main() {
         let rgb_value = rgb.trim().replace(" ", "").replace(",", "").replace("\"", "").replace("(", "").replace(")", "");
         if rgb_value.len() < 9 {
             println!("Invalid RGB Value, must be in the form of \"(000, 000, 000)\" (\"(, )\" optional)");
+            return;
         }
+
         for (ind, chr) in rgb_value.chars().enumerate() {
             if !chr.is_digit(10) {
-                println!("Invalid RGB Value");
+                println!("Invalid RGB Value, non-digit found");
                 return;
             }
             if ind == 3 {
+                let red = i32::from_str_radix(&rgb_value[0..3], 10).unwrap();
+                let green = i32::from_str_radix(&rgb_value[3..6], 10).unwrap();
+                let blue = i32::from_str_radix(&rgb_value[6..9], 10).unwrap();
+                if red > 255 || green > 255 || blue > 255 {
+                    println!("Invalid RGB Value, number(s) exceed 255");
+                    return;
+                }
                 let red = u8::from_str_radix(&rgb_value[0..3], 10).unwrap();
                 let green = u8::from_str_radix(&rgb_value[3..6], 10).unwrap();
                 let blue = u8::from_str_radix(&rgb_value[6..9], 10).unwrap();
@@ -60,6 +72,7 @@ fn main() {
         }
     } else {
         println!("Invalid Input, please input \"hex\" or \"rgb\"");
+        return;
     }
 
 }
