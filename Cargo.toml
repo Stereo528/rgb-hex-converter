@@ -1,6 +1,6 @@
 [package]
 name = "rgb_hex_converter"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 description = "Converts HEX to RGB and vice versa"
 authors = ["Stereo528"]

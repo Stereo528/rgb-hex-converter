@@ -9,7 +9,7 @@ struct RGB {
 
 impl Display for RGB {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
-        write!(f, "{:<width$}RGB: {red}, {green}, {blue}\t ->{:<width$} Hex: #{red:02X}{green:02X}{blue:02X}", "", "", red = self.red, green = self.green, blue = self.blue, width=4)
+        write!(f, "\nRGB: {red}, {green}, {blue} {:<width$}->{:<width$} Hex: #{red:02X}{green:02X}{blue:02X}", "", "", red = self.red, green = self.green, blue = self.blue, width=4)
     }
 }
 
@@ -18,11 +18,11 @@ fn main() {
     let mut rgb = String::new();
     let mut hex = String::new();
 
-    println!("Enter 'hex' or 'rgb'");
+    println!("Enter 'hex' or 'rgb':");
     io::stdin().read_line(&mut hex_or_rgb).expect("Failed to read line");
 
     if hex_or_rgb.trim() == "hex" {
-        println!("Enter Hex Value");
+        println!("Enter Hex Value:");
         io::stdin().read_line(&mut hex).expect("Failed to read line");
         let hex_value = hex.trim().replace("#", "").replace(" ", "").replace("\"", "");
         for (ind, chr) in hex_value.chars().enumerate() {
@@ -40,7 +40,7 @@ fn main() {
 
     } else if hex_or_rgb.trim() == "rgb" {
         println!("Enter RGB Value");
-        println!("Must be in the form of \"(000, 000, 000)\" (\"(, )\" optional)");
+        println!("NOTICE: Must be in the form of \"(000, 000, 000)\" (\"(, )\" optional):");
         io::stdin().read_line(&mut rgb).expect("Failed to read line");
         let rgb_value = rgb.trim().replace(" ", "").replace(",", "").replace("\"", "").replace("(", "").replace(")", "");
         if rgb_value.len() < 9 {
