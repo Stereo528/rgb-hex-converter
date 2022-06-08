@@ -1,0 +1,7 @@
+[package]
+name = "rgb_hex_converter"
+version = "1.0.0"
+edition = "2021"
+description = "Converts HEX to RGB and vice versa"
+authors = ["Stereo528"]
+license = "BSD-3-Clause"
